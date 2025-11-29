@@ -3,10 +3,11 @@ import pyxel
 from app.components.sprites import Sprite,SpriteAnimated
 
 class Text:
-    def __init__(self, text : list[str | Sprite | SpriteAnimated], line_spacing : int = 8) -> None:
+    def __init__(self, text : list[str | Sprite | SpriteAnimated], line_spacing : int = 8, font : pyxel.Font|None = None) -> None:
         self.line_spacing : int = line_spacing
         self.text = text
         self.wlist : list[float] = []
+        self.font = font
         i = 0
         while i < len(self.text):
             if type(self.text[i]) == str and "\n" in self.text[i] and self.text[i] != "\n": # type: ignore
@@ -51,9 +52,10 @@ class Text:
                 continue
 
             if type(self.text[i]) == str:
-                pyxel.text(cx,cy, self.text[i],col) # type: ignore
+                pyxel.text(cx,cy, self.text[i],col, self.font) # type: ignore
 
             elif type(self.text[i]) in [Sprite,SpriteAnimated]:
-                self.text[i].draw(cx,cy-self.text[i].h/2+pyxel.FONT_HEIGHT/2) # type: ignore
+                a : float = self.text[i].parameters.scale if self.text[i].parameters.scale else 1 # type: ignore
+                self.text[i].draw(cx ,cy-self.text[i].h/2+pyxel.FONT_HEIGHT/2) # type: ignore
             
             cx += self.wlist[i]

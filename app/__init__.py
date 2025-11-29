@@ -3,6 +3,7 @@ import pyxel
 from .menus._manager import MenuManager
 from .menus import Main,Tutorial,RessourcePack,Game
 
+from .ressources.ui import players
 from .ressources.controls import PlayerControls
 from .ressources.text import english
 
@@ -25,19 +26,19 @@ class App:
         self.player : list[Player] = [
             Player(
                 "player 1",
-                0,
+                players.player1ui,
                 PlayerControls(
                     select = pyxel.KEY_M
                 )
             ),
             Player(
                 "player 2",
-                1,
+                players.player2ui,
                 PlayerControls(
                     up = pyxel.KEY_Z,
                     down = pyxel.KEY_S,
-                    left = pyxel.KEY_LEFT,
-                    right = pyxel.KEY_RIGHT,
+                    left = pyxel.KEY_Q,
+                    right = pyxel.KEY_D,
                     select = pyxel.KEY_V
                 )
             )

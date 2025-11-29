@@ -20,7 +20,7 @@ class PlayerControls:
         if up:
             self.up = up
         if down:
-            self.dows = down
+            self.down = down
         if left:
             self.left = left
         if right:

@@ -1,6 +1,6 @@
 import pyxel
 
-from ...ressources.images._parameters import SpriteParameters
+from ...ressources.ui._parameters import SpriteParameters
 
 class Sprite:
     def __init__(self, parameters : SpriteParameters) -> None:
@@ -22,8 +22,8 @@ class Sprite:
 
     @property
     def w(self) -> float:
-        return self.parameters.w
+        return self.parameters.w*self.parameters.scale if self.parameters.scale else self.parameters.w
 
     @property
     def h(self) -> float:
-        return self.parameters.h
+        return self.parameters.h*self.parameters.scale if self.parameters.scale else self.parameters.h
